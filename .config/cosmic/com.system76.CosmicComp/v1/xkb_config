@@ -1,0 +1,9 @@
+(
+    rules: "",
+    model: "",
+    layout: "",
+    variant: "",
+    options: Some("caps:escape_shifted_capslock"),
+    repeat_delay: 250,
+    repeat_rate: 30,
+)

@@ -1,48 +1,36 @@
-setopt share_history
+### history
 setopt extended_history
-
+setopt share_history
 setopt hist_ignore_space
+HISTFILE=$HOME/.zsh/history
+SAVEHIST=10000
+HISTSIZE=10000
 
+### navigation
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-PROMPT=$'%n@%m %~ %(?..%F{red})%(!.#.$)%f '
-HISTFILE=$HOME/.zhistory
-SAVEHIST=10000
-HISTSIZE=10000
-ZLE_SPACE_SUFFIX_CHARS=$'&|'
+### prompt
+PROMPT=
+PROMPT+='%(?..%F{red}%?%f )'
+PROMPT+='%(!.%F{red}.%F{blue})%B%n%b%f@%m '
+PROMPT+='%40<...<%B%~%b%<< '
+PROMPT+='%(!.#.$) '
 
+### zle
 bindkey -e
-autoload -U compinit && compinit
-
-alias dotfiles='git --git-dir="${XDG_DATA_HOME:-$HOME/.local/share}/dotfiles" --work-tree="$HOME"'
-alias sudo='sudo '
-alias xargs='xargs '
-alias lc='ls -F --group-directories-first'
-alias ll='lc -hl'
-alias la='ll -A'
-alias bc='bc -q'
-alias ed='ed -p:'
+ZLE_SPACE_SUFFIX_CHARS=$'&|'
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
 
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
+### completion
+autoload -Uz compinit && compinit -d $HOME/.zsh/compdump
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
-ZSH_HIGHLIGHT_STYLES[command]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[function]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=green'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=green'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=green'
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+### other
+source $HOME/.zsh/config/alias.zsh
+source $HOME/.zsh/config/plugins.zsh

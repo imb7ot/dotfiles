@@ -1,51 +1,45 @@
 runtime config/defaults.vim
 runtime config/hier.vim
 
+""" file
+set undofile
 set autoread
 set hidden
+
+""" edit
+set nowrap
+set breakindent
+set list
+set listchars=tab:\ \ ,trail:~,extends:>,precedes:<,nbsp:+
 set virtualedit=block
-set undofile
 
-set tabstop=4
-set expandtab
-set shiftwidth=0
+""" indent
+set shiftwidth=4
 set softtabstop=-1
-
+set expandtab
 set autoindent
 set smartindent
 
+""" move
+set sidescrolloff=5
+set sidescroll=1
+
+""" search
 set hlsearch
 set ignorecase
 set smartcase
 
-set nowrap
-set breakindent
-
+""" screen
 set laststatus=2
-set number
-set signcolumn=number
-set list
-set listchars=tab:\ \ ,trail:-,extends:>,precedes:<,nbsp:+
-
-set sidescrolloff=5
-set sidescroll=1
-
-set termguicolors
+set number "sign move
+set signcolumn=number "sign
 set background=dark
-
-"colo jellybeans
+"colorscheme ayu
 
 let &t_EI = "\e[2 q"
 let &t_SR = "\e[4 q"
 let &t_SI = "\e[6 q"
 
+""" keymap
 let mapleader=","
-
-nnoremap <leader>q <Cmd>quit<CR>
-nnoremap <leader>w <Cmd>write<CR>
-nnoremap <leader>W <Cmd>w !sudo tee % >/dev/null<CR>
-
 nnoremap <silent> <C-L> <C-L><Cmd>nohlsearch<CR>
-
-packadd! oscyank
-packadd! lexima

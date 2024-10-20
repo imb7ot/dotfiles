@@ -6,9 +6,9 @@ let &packpath = s:xdg_data_home .. '/vim' .. ',' .. &packpath
 let &packpath = &packpath .. ',' .. s:xdg_data_home .. '/vim/after'
 
 let &viminfofile = s:xdg_state_home .. '/vim/viminfo'
-let &directory   = s:xdg_cache_home .. '/vim/swap//'
-let &backupdir   = s:xdg_cache_home .. '/vim/backup//'
-let &undodir     = s:xdg_cache_home .. '/vim/undo//'
+let &directory   = s:xdg_state_home .. '/vim/swap//'
+let &backupdir   = s:xdg_state_home .. '/vim/backup//'
+let &undodir     = s:xdg_state_home .. '/vim/undo//'
 let g:netrw_home = s:xdg_state_home .. '/vim'
 
 call mkdir(fnamemodify(&viminfofile, ':p:h'), 'p')

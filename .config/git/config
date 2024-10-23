@@ -3,7 +3,3 @@
 	email = imb7ot@gmail.com
 [init]
 	defaultBranch = main
-[alias]
-	commitnc = commit --allow-empty-message -m \"\"
-[credential]
-	helper = store

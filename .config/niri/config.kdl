@@ -16,6 +16,9 @@ input {
             // layout "us,ru"
             options "caps:escape_shifted_capslock"
         }
+
+        // Delay is in milliseconds before the keyboard repeat starts. Rate is
+        // in characters per second.
         repeat-delay 250
         repeat-rate 30
     }
@@ -23,25 +26,31 @@ input {
     // Next sections include libinput settings.
     // Omitting settings disables them, or leaves them at their default values.
     touchpad {
+        // off
         tap
         // dwt
         // dwtp
         natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
+        // scroll-method "two-finger"
+        // disabled-on-external-mouse
     }
 
     mouse {
+        // off
         // natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
+        // scroll-method "no-scroll"
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
     // warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
-    // focus-follows-mouse
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    // focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -50,7 +59,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "eDP-1" {
+/-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -62,8 +71,8 @@ output "eDP-1" {
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "1920x1080@120.030"
 
-    // Scale is a floating-point number, but at the moment only integer values work.
-    scale 1.25
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 2
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -109,6 +118,9 @@ layout {
         // fixed 1920
     }
 
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
+    // preset-window-heights { }
+
     // You can change the default width of the new windows.
     default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
@@ -149,6 +161,7 @@ layout {
         // The angle is the same as in linear-gradient, and is optional,
         // defaulting to 180 (top-to-bottom gradient).
         // You can use any CSS linear-gradient tool on the web to set these up.
+        // Changing the color space is also supported, check the wiki for more info.
         //
         // active-gradient from="#80c8ff" to="#bbddff" angle=45
 
@@ -189,6 +202,7 @@ layout {
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
+// See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -261,7 +275,8 @@ binds {
     Mod+D { spawn "fuzzel"; }
     Mod+Shift+O { spawn "swaylock"; }
 
-    // You can also use a shell:
+    // You can also use a shell. Do this if you need pipes, multiple commands, etc.
+    // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -420,7 +435,8 @@ binds {
     // Mod+BracketRight { consume-or-expel-window-right; }
 
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { reset-window-height; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+C { center-column; }

@@ -1,5 +1,5 @@
-runtime config/defaults.vim
-runtime config/hier.vim
+source ~/.config/vim/defaults.vim
+source ~/.config/vim/hier.vim
 
 """ file
 set undofile

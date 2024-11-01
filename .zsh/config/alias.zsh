@@ -1,4 +1,4 @@
-alias dotfiles='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
+alias dotfile='git --git-dir="$HOME/.local/share/dotfile" --work-tree="$HOME"'
 
 alias lc='ls -F --group-directories-first'
 alias ll='lc -hl'

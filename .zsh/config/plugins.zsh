@@ -10,6 +10,3 @@ ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=green'
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh

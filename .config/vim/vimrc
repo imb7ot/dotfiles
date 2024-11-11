@@ -1,3 +1,4 @@
+""" head
 source ~/.config/vim/defaults.vim
 source ~/.config/vim/hier.vim
 
@@ -43,3 +44,6 @@ let &t_SI = "\e[6 q"
 """ keymap
 let mapleader=","
 nnoremap <silent> <C-L> <C-L><Cmd>nohlsearch<CR>
+
+""" tail
+source ~/.config/vim/pack.vim

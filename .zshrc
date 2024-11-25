@@ -33,4 +33,4 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ### other
 source $HOME/.zsh/config/alias.zsh
-source $HOME/.zsh/config/plugins.zsh
+source $HOME/.zsh/config/plugin.zsh

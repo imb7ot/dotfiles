@@ -5,6 +5,7 @@ alias ed='ed -p:'
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias ip='ip -color=auto'
 
 alias lc='ls --group-directories-first'
 alias ll='lc -hl'

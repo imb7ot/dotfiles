@@ -17,6 +17,9 @@ PROMPT+='%(!.%F{red}.%F{blue})%B%n%b%f@%m '
 PROMPT+='%40<...<%B%~%b%<< '
 PROMPT+='%(!.#.$) '
 
+### title
+precmd() { print -Pn -- '\e]2;%n@%m\a' }
+
 ### zle
 bindkey -e
 ZLE_SPACE_SUFFIX_CHARS=$'&|'

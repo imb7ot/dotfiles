@@ -12,9 +12,9 @@ setopt pushd_ignore_dups
 
 ### prompt
 PROMPT=
-PROMPT+='%(?..%F{red}%?%f )'
 PROMPT+='%(!.%F{red}.%F{blue})%B%n%b%f@%m '
 PROMPT+='%40<...<%B%~%b%<< '
+PROMPT+='%(?..%F{red}%?%f )'
 PROMPT+='%(!.#.$) '
 
 ### title

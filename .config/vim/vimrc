@@ -45,6 +45,7 @@ let &t_SI = "\e[6 q"
 let mapleader=","
 nnoremap <silent> <C-L> <C-L><Cmd>nohlsearch<CR>
 nmap <M-v> p
+nnoremap <leader>r <Cmd>update \| !%:p<CR>
 
 """ tail
 source ~/.config/vim/pack.vim

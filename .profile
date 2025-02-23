@@ -1,4 +1,4 @@
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH:$HOME/.local/lib/utils
 
 export EDITOR=vim
 export PAGER=less

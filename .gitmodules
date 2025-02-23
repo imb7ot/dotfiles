@@ -1,9 +1,0 @@
-[submodule ".local/share/vim/pack/dotfile/opt/oscyank"]
-	path = .local/share/vim/pack/dotfile/opt/oscyank
-	url = https://github.com/ojroques/vim-oscyank.git
-[submodule ".zsh/plugin/zsh-syntax-highlighting"]
-	path = .zsh/plugin/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".zsh/plugin/zsh-autosuggestions"]
-	path = .zsh/plugin/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git

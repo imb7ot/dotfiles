@@ -11,7 +11,7 @@ set hidden
 set nowrap
 set breakindent
 set list
-set listchars=tab:\ \ ,trail:~,extends:>,precedes:<,nbsp:+
+set listchars=tab:\ \ ,trail:.,extends:~,precedes:~,nbsp:+
 set virtualedit=block
 
 """ indent

@@ -11,8 +11,10 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 ### prompt
+setopt prompt_subst
 PROMPT=
 PROMPT+='%(!.%F{red}.%F{blue})%B%n%b%f@%m '
+PROMPT+='${CONTAINER_ID:+($CONTAINER_ID) }'
 PROMPT+='%40<...<%B%~%b%<< '
 PROMPT+='%(?..%F{red}%?%f )'
 PROMPT+='%(!.#.$) '

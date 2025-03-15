@@ -1,4 +1,4 @@
-alias dotfile='git -C "$HOME" --git-dir="$HOME/.local/share/dotfile/git" --work-tree=.'
+alias dotfiles='git -C "$HOME" --git-dir="$HOME/.local/share/dotfiles/git" --work-tree=.'
 
 alias bc='bc -q'
 alias ed='ed -p:'

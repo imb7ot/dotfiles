@@ -1,4 +1,4 @@
-packadd! oscyank
+packadd! vim-oscyank
 
 let g:oscyank_silent = 1
 

@@ -36,6 +36,20 @@ bindkey '^N' down-line-or-beginning-search
 autoload -Uz compinit && compinit -d $HOME/.zsh/compdump
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-### other
-source $HOME/.zsh/config/alias.zsh
-source $HOME/.zsh/config/plugin.zsh
+### alias
+alias dotfiles='git -C "$HOME" --git-dir="$HOME/.local/share/dotfiles/git" --work-tree=.'
+
+alias bc='bc -q'
+alias ed='ed -p:'
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip -color=auto'
+
+alias lc='ls --group-directories-first'
+alias ll='lc -hl'
+alias la='ll -A'
+
+### plugin
+source $HOME/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh

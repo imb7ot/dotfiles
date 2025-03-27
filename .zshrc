@@ -37,7 +37,7 @@ autoload -Uz compinit && compinit -d $HOME/.zsh/compdump
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ### alias
-alias dotfiles='git -C "$HOME" --git-dir="$HOME/.local/share/dotfiles/git" --work-tree=.'
+alias dotfiles='git -C "$HOME" --git-dir="$HOME/.local/share/dotfiles" --work-tree=.'
 
 alias bc='bc -q'
 alias ed='ed -p:'

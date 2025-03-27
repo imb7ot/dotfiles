@@ -31,8 +31,6 @@ set ignorecase
 set smartcase
 
 """ screen
-set laststatus=2
-set number
 set signcolumn=number
 set background=dark
 "colorscheme ayu

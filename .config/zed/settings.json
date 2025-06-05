@@ -7,26 +7,42 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "languages": {
-    "Plain Text": {
-      "show_edit_predictions": false
-    }
-  },
-  "proxy": "socks5h://127.0.0.1:7891",
-  "assistant": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-7-sonnet"
-    },
-    "version": "2"
-  },
-  "theme": "Ayu Dark",
+  "theme": "Gruvbox Dark Hard",
+  "ui_font_size": 14,
   "buffer_font_family": "JetBrains Mono",
-  "buffer_font_size": 15,
+  "buffer_font_size": 14,
+  "buffer_font_features": {
+    "calt": false,
+    "zero": true,
+    "cv01": true,
+    "cv07": true,
+    "cv14": true,
+    "cv19": true
+  },
+  "minimap": {
+    "show": "always"
+  },
+
   "vim_mode": true,
   "cursor_blink": false,
+
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "agent": {
+    "version": "2",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3.7-sonnet"
+    }
+  },
+
+  "proxy": "socks5h://127.0.0.1:7891",
   "telemetry": {
-    "metrics": false,
-    "diagnostics": false
+    "diagnostics": false,
+    "metrics": false
   }
 }

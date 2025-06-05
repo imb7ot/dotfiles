@@ -1,13 +1,16 @@
 #!/bin/sh
-set -u
 
 file=$1
 
-mime=$(file -Lbi -- "$file")
-char=${mime##*=}
-mime=${mime%%;*}
+filetype=$(file -Lbi -- "$file")
+mime=${filetype%%;*}
+charset=${filetype##*=}
 
-if [ "$char" != binary ]; then
+locale=${LC_ALL:-${LC_CTYPE:-$LANG}}
+
+if [ "$charset" = 'us-ascii' ] ||
+    { case "$locale" in *UTF-8*);; *) false;; esac &&
+    [ "$charset" = 'utf-8' ]; }; then
     cat -- "$file"
     exit
 fi

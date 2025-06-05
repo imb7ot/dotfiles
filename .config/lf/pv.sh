@@ -36,3 +36,5 @@ case "$mime" in
         try mediainfo
         break ;;
 esac
+
+exit 1

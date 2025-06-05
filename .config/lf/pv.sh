@@ -27,8 +27,8 @@ try() {
 case "$mime" in
     application/*)
         case "${mime##*/}" in
-            zip|rar|gzip)
-                try als
+            x-tar|gzip|zstd|zip|x-7z-compressed|vnd.rar)
+                bsdtar -tf "$file" 2>/dev/null && exit
                 break ;;
         esac
         break ;;

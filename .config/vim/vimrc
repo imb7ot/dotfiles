@@ -39,10 +39,7 @@ let &t_SR = "\e[4 q"
 let &t_SI = "\e[6 q"
 
 """ keymap
-let mapleader=","
 nnoremap <silent> <C-L> <C-L><Cmd>nohlsearch<CR>
-nmap <M-v> p
-nnoremap <leader>r <Cmd>update \| !%:p<CR>
 
 """ tail
 source ~/.config/vim/pack.vim

@@ -7,42 +7,55 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Gruvbox Dark Hard",
-  "ui_font_size": 14,
-  "buffer_font_family": "JetBrains Mono",
-  "buffer_font_size": 14,
+  // General
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  // Appearance
+  "theme": "Ayu Dark",
+  "buffer_font_size": 13.0,
   "buffer_font_features": {
     "calt": false,
-    "zero": true,
-    "cv01": true,
-    "cv07": true,
-    "cv14": true,
-    "cv19": true
+    "zero": true
   },
-  "minimap": {
-    "show": "always"
-  },
-
-  "vim_mode": true,
+  "ui_font_size": 15.0,
   "cursor_blink": false,
 
-  "edit_predictions": {
-    "mode": "subtle"
+  // Keymap
+  "vim_mode": true,
+
+  // Editor
+  "relative_line_numbers": "enabled",
+  "format_on_save": "off",
+
+  // Languages & Tools
+  "languages": {
+    "Python": {
+      "language_servers": ["ty", "!basedpyright"]
+    }
+  },
+
+  // Window & Layout
+  "window_decorations": "server",
+
+  // Terminal
+  "terminal": {
+    "font_features": {
+      "calt": false,
+      "zero": true
+    }
+  },
+
+  // AI
+  "agent": {
+    "always_allow_tool_actions": true
   },
   "features": {
     "edit_prediction_provider": "copilot"
   },
-  "agent": {
-    "version": "2",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3.7-sonnet"
-    }
-  },
 
-  "proxy": "socks5h://127.0.0.1:7891",
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  }
+  // Network
+  "proxy": "socks5h://127.0.0.1:7891"
 }

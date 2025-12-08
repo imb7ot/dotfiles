@@ -44,7 +44,6 @@ set ignorecase
 set smartcase
 
 """ screen
-set signcolumn=number
 set background=dark
 
 let &t_EI = "\e[2 q"

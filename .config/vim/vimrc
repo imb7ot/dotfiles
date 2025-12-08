@@ -1,4 +1,4 @@
-""" head
+""" basic
 let s:state_dir = $HOME .. '/.local/state/vim'
 
 let &viminfofile = s:state_dir .. '/viminfo'
@@ -20,7 +20,7 @@ set undofile
 set autoread
 set hidden
 
-""" edit
+""" editing
 set nowrap
 set breakindent
 set list
@@ -43,7 +43,7 @@ set hlsearch
 set ignorecase
 set smartcase
 
-""" screen
+""" display
 set background=dark
 
 let &t_EI = "\e[2 q"

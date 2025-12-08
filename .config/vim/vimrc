@@ -1,6 +1,6 @@
 """ head
 source ~/.config/vim/defaults.vim
-source ~/.config/vim/hier.vim
+source ~/.config/vim/directory.vim
 
 """ file
 set undofile

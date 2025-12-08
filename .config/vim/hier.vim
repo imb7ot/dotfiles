@@ -1,8 +1,4 @@
-let s:share_dir = $HOME .. '/.local/share/vim'
 let s:state_dir = $HOME .. '/.local/state/vim'
-
-let &packpath = s:share_dir .. ',' .. &packpath
-let &packpath = &packpath .. ',' .. s:share_dir .. '/after'
 
 let &viminfofile = s:state_dir .. '/viminfo'
 let &directory   = s:state_dir .. '/swap//'

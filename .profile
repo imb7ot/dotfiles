@@ -1,9 +1,8 @@
-export PATH=$HOME/.local/bin:$PATH:$HOME/.local/lib/utils
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/.local/utils
 
 export EDITOR=vim
 export PAGER=less
 
-export PYTHON_HISTORY=$HOME/.local/stat/python/history
-
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+export PYTHON_HISTORY=$HOME/.local/state/python/history
+mkdir -p "$(dirname "$PYTHON_HISTORY")"

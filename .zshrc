@@ -58,9 +58,9 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip -color=auto'
 
-alias lc='ls --color=auto -v --group-directories-first -C'
-alias ll='ls --color=auto -v --group-directories-first -l -h'
-alias la='ls --color=auto -v --group-directories-first -l -h -A'
+alias lc='ls -C -v --group-directories-first'
+alias ll='lc -l -h'
+alias la='ll -A'
 
 ### plugin
 source $HOME/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -9,16 +9,6 @@ setopt extended_history
 setopt share_history
 setopt hist_ignore_space
 
-### navigation
-setopt auto_pushd
-setopt pushd_ignore_dups
-
-function chpwd {
-    if [[ $PWD != $HOME ]]; then
-        timeout 0.1 ls -v --group-directories-first --color=auto 2>/dev/null
-    fi
-}
-
 ### prompt
 setopt prompt_subst
 PROMPT=
@@ -29,6 +19,16 @@ PROMPT+='%(?..%F{red})%(!.#.$)%f '
 
 function precmd {
     print -Pn '\e]2;%n@%m\a'
+}
+
+### navigation
+setopt auto_pushd
+setopt pushd_ignore_dups
+
+function chpwd {
+    if [[ $PWD != $HOME ]]; then
+        timeout 0.1 ls -v --group-directories-first --color=auto 2>/dev/null
+    fi
 }
 
 ### editing
@@ -68,4 +68,6 @@ source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 FZF_CTRL_T_OPTS=--walker=file,dir
 FZF_ALT_C_OPTS=--walker=dir
-command -v fzf >/dev/null && source <(fzf --zsh)
+if command -v fzf >/dev/null; then
+    source <(fzf --zsh)
+fi

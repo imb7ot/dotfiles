@@ -1,8 +1,6 @@
 ### basic
 [[ -d $HOME/.zsh ]] || mkdir $HOME/.zsh
 
-autoload -Uz add-zsh-hook
-
 ### history
 HISTFILE=$HOME/.zsh/history
 SAVEHIST=10000
@@ -15,11 +13,11 @@ setopt hist_ignore_space
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-function _zshrc_auto_ls {
-    [[ $PWD == $HOME ]] && return
-    timeout 0.1 ls -v --group-directories-first --color=auto 2>/dev/null
+function chpwd {
+    if [[ $PWD != $HOME ]]; then
+        timeout 0.1 ls -v --group-directories-first --color=auto 2>/dev/null
+    fi
 }
-add-zsh-hook chpwd _zshrc_auto_ls
 
 ### prompt
 setopt prompt_subst
@@ -29,8 +27,9 @@ PROMPT+='%(!.%F{red}.%F{blue})%B%n%b%f@%m '
 PROMPT+='%40<...<%B%~%b%<< '
 PROMPT+='%(?..%F{red})%(!.#.$)%f '
 
-function _zshrc_set_title { print -Pn -- '\e]2;%n@%m\a' }
-add-zsh-hook precmd _zshrc_set_title
+function precmd {
+    print -Pn '\e]2;%n@%m\a'
+}
 
 ### editing
 bindkey -e

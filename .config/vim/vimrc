@@ -34,10 +34,6 @@ set expandtab
 set autoindent
 set smartindent
 
-""" move
-set sidescrolloff=5
-set sidescroll=1
-
 """ search
 set hlsearch
 set ignorecase

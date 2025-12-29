@@ -1,4 +1,4 @@
-### history
+### HISTORY
 HISTFILE=${ZDOTDIR:-$HOME}/.zhistory
 SAVEHIST=10000
 HISTSIZE=10000
@@ -6,7 +6,7 @@ setopt extended_history
 setopt share_history
 setopt hist_ignore_space
 
-### prompt
+### PROMPT
 setopt prompt_subst
 PROMPT=
 PROMPT+='${CONTAINER_ID:+($CONTAINER_ID) }'
@@ -18,7 +18,7 @@ function precmd {
     print -Pn '\e]2;%n@%m\a'
 }
 
-### navigation
+### NAVIGATION
 setopt auto_pushd
 setopt pushd_ignore_dups
 
@@ -28,7 +28,7 @@ function chpwd {
     fi
 }
 
-### editing
+### EDITING
 bindkey -e
 
 autoload -Uz up-line-or-beginning-search
@@ -41,14 +41,14 @@ bindkey '^N' down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
-### completion
+### COMPLETION
 fpath=($fpath $HOME/.zsh/plugin/zsh-completions/src)
 
 autoload -Uz compinit && compinit
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-### alias
+### ALIAS
 alias dotfiles='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
 
 alias ls='ls --color=auto'
@@ -59,7 +59,7 @@ alias lc='ls -C -v --group-directories-first'
 alias ll='lc -l -h'
 alias la='ll -A'
 
-### plugin
+### PLUGIN
 source $HOME/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh
 

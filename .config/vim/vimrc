@@ -1,4 +1,4 @@
-""" basic
+""" BASIC
 let s:state_dir = $HOME .. '/.local/state/vim'
 
 let &viminfofile = s:state_dir .. '/viminfo'
@@ -15,41 +15,41 @@ call mkdir(expand(g:netrw_home), 'p')
 
 source ~/.config/vim/defaults.vim
 
-""" file
+""" FILE
 set undofile
 set autoread
 set hidden
 
-""" editing
+""" EDITING
 set nowrap
 set breakindent
 set list
 set listchars=tab:\ \ ,trail:.,extends:~,precedes:~,nbsp:+
 set virtualedit=block
 
-""" indent
+""" INDENT
 set shiftwidth=4
 set softtabstop=-1
 set expandtab
 set autoindent
 set smartindent
 
-""" search
+""" SEARCH
 set hlsearch
 set ignorecase
 set smartcase
 
-""" display
+""" DISPLAY
 set background=dark
 
 let &t_EI = "\e[2 q"
 let &t_SR = "\e[4 q"
 let &t_SI = "\e[6 q"
 
-""" keymap
+""" KEYMAP
 nnoremap <silent> <C-L> <C-L><Cmd>nohlsearch<CR>
 
-""" package
+""" PACKAGE
 packadd! vim-oscyank
 let g:oscyank_silent = 1
 if (!has('clipboard_working'))

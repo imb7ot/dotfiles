@@ -1,8 +1,5 @@
-### basic
-[[ -d $HOME/.zsh ]] || mkdir $HOME/.zsh
-
 ### history
-HISTFILE=$HOME/.zsh/history
+HISTFILE=${ZDOTDIR:-$HOME}/.zhistory
 SAVEHIST=10000
 HISTSIZE=10000
 setopt extended_history
@@ -38,6 +35,7 @@ autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+
 bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
@@ -46,8 +44,7 @@ bindkey '^[[B' down-line-or-beginning-search
 ### completion
 fpath=($fpath $HOME/.zsh/plugin/zsh-completions/src)
 
-autoload -Uz compinit
-compinit -d $HOME/.zsh/compdump
+autoload -Uz compinit && compinit
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 

@@ -63,9 +63,9 @@ alias la='ll -A'
 source $HOME/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-FZF_CTRL_T_OPTS=--walker=file,dir
-FZF_ALT_C_OPTS=--walker=dir
 if command -v fzf >/dev/null; then
+    FZF_CTRL_T_OPTS=--walker=file,dir
+    FZF_ALT_C_OPTS=--walker=dir
     source $HOME/.zsh/plugin/zsh-fzf/key-bindings.zsh
     source $HOME/.zsh/plugin/zsh-fzf/completion.zsh
 fi

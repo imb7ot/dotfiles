@@ -1,8 +1,6 @@
-#compdef distro-info ubuntu-distro-info debian-distro-info
-#
+#compdef tsx
 # ------------------------------------------------------------------------------
 # Copyright (c) 2025 Github zsh-users - https://github.com/zsh-users
-# All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -26,29 +24,30 @@
 # Description
 # -----------
 #
-#  Completion for distro-info
+#  Completion script for tsx v4.21.0. (https://github.com/privatenumber/tsx)
 #
 # ------------------------------------------------------------------------------
 # Authors
 # -------
 #
-#  * Shohei YOSHIDA (https://github.com/syohex)
+#  * Shohei Yoshida (https://github.com/syohex) <syohex@gmail.com>
 #
 # ------------------------------------------------------------------------------
 
-_arguments \
-  '(- *)'{-h,--help}'[display help message and exit]' \
-  '--date=[date for calculating the version]:date' \
-  '(-a --all)'{-a,--all}'[list all known versions]' \
-  '(-y --days)'{-y,--days=}'[display number of days until specified version reaches the specified milestone]:milestone:(created release eol eol-server)' \
-  '(-d --devel)'{-d,--devel}'[latest development version]' \
-  '--series=[series to calculate the version for]:series' \
-  '(-s --stable)'{-s,--stable}'[latest stable version]' \
-  '--supported[list of all supported version, including development releases]' \
-  '--unsupported[list of all unsupported stable versions]' \
-  '(-c --codename)'{-c,--codename}'[print the codename(default)]' \
-  '(-r --release)'{-r,--release}'[print the release version]' \
-  '(-f --fullname)'{-f,--fullname}'[print the full name]'
+_tsx_completion() {
+  _arguments \
+    '(- *)'{-h,--help}'[show help]' \
+    '(- *)'{-v,--version}'[show version]' \
+    '--no-cache[disable caching]' \
+    '--tsconfig[custom tsconfig.json path]:path:_files -g "*.json"' \
+    '1: :(watch)'
+}
+
+_tsx() {
+  _alternative 'tsx: :_tsx_completion' 'node: :_node'
+}
+
+_tsx "$@"
 
 # Local Variables:
 # mode: Shell-Script

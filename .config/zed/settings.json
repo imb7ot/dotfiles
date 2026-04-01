@@ -14,7 +14,7 @@
   },
 
   // Appearance
-  "theme": "Ayu Dark",
+  "theme": "Gruvbox Dark Hard",
   "buffer_font_size": 13.0,
   "buffer_font_features": {
     "calt": false,
@@ -57,5 +57,5 @@
   },
 
   // Network
-  "proxy": "socks5h://127.0.0.1:7891"
+  "proxy": "http://127.0.0.1:7890"
 }

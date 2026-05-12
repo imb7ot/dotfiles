@@ -4,12 +4,12 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias rm='rm -v'
-alias mv='mv -v -i'
-alias cp='cp -v -i'
+alias mv='mv -i'
+alias cp='cp -i'
 
 alias ls='ls --color'
 alias grep='grep --color'
+alias diff='diff --color'
 alias ip='ip -color'
 
 alias lc='ls -C -v --group-directories-first'

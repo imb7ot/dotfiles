@@ -14,6 +14,7 @@ PROMPT+='%40<...<%B%~%b%<< '
 PROMPT+='%(?..%F{red})%(!.#.$)%f '
 
 function precmd {
+    print -Pn '\e]133;A\e\\'
     print -Pn '\e]2;%n@%m\a'
 }
 

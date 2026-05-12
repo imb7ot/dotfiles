@@ -3,16 +3,20 @@ unlet! skip_defaults_vim
 runtime defaults.vim
 runtime xdg.vim
 
+""" GENERAL
+set laststatus=2
+set number
+set nowrap
+set breakindent
+set list
+set listchars=tab:\ \ ,trail:.,extends:~,precedes:~,nbsp:+
+
 """ FILE
 set undofile
 set autoread
 set hidden
 
 """ EDITING
-set nowrap
-set breakindent
-set list
-set listchars=tab:\ \ ,trail:.,extends:~,precedes:~,nbsp:+
 set virtualedit=block
 
 """ INDENT
@@ -27,7 +31,7 @@ set hlsearch
 set ignorecase
 set smartcase
 
-""" DISPLAY
+""" APPEARANCE
 set background=dark
 
 let &t_EI = "\e[2 q"

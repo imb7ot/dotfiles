@@ -1,7 +1,7 @@
 """ BASIC
+runtime xdg.vim
 unlet! skip_defaults_vim
 runtime defaults.vim
-runtime xdg.vim
 
 """ GENERAL
 set laststatus=2

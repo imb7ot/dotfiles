@@ -1,17 +1,13 @@
+alias mv="mv -i"
+alias cp="cp -i"
+
+alias ls="ls --color"
+alias grep="grep --color"
+alias diff="diff --color"
+alias ip="ip -color"
+
+alias lc="ls -C -v --group-directories-first"
+alias ll="lc -l -h"
+alias la="ll -A"
+
 alias dotfiles='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-alias mv='mv -i'
-alias cp='cp -i'
-
-alias ls='ls --color'
-alias grep='grep --color'
-alias diff='diff --color'
-alias ip='ip -color'
-
-alias lc='ls -C -v --group-directories-first'
-alias ll='lc -l -h'
-alias la='ll -A'

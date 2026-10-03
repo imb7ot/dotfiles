@@ -1,18 +1,7 @@
-pathmunge() {
-    case ":${PATH}:" in
-        *:"$1":*)
-            return
-    esac
-    if [ "$2" = "after" ]; then
-        PATH=$PATH:$1
-    else
-        PATH=$1:$PATH
-    fi
-}
-pathmunge "$HOME/.local/bin"
-pathmunge "$HOME/.local/utils" after
-unset -f pathmunge
-
+case ":$PATH:" in
+    *":$HOME/.local/bin:"*) ;;
+    *) PATH="$HOME/.local/bin:$PATH" ;;
+esac
 export PATH
 
 export EDITOR=vim

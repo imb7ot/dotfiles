@@ -22,15 +22,8 @@ function precmd {
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-function chpwd {
-    if [[ $PWD != $HOME ]]; then
-        timeout 0.1 ls -v --group-directories-first --color=auto 2>/dev/null
-    fi
-}
-
 ### COMPLETION
 fpath=($fpath $HOME/.zsh/plugin/zsh-completions/src)
-
 autoload -Uz compinit && compinit
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

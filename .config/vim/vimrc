@@ -59,3 +59,8 @@ if (!has('clipboard_working'))
         autocmd TextYankPost * call s:VimOSCYankPostCallback(v:event)
     augroup END
 endif
+
+packadd! vim-sneak
+let g:sneak#label = 1
+highlight! link Sneak CurSearch
+highlight! link SneakCurrent CurSearch

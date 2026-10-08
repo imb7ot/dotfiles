@@ -50,6 +50,16 @@ bindkey '^N' down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
+### ALIAS
+alias mv="mv -i"
+alias cp="cp -i"
+
+alias lc="ls -C -v --group-directories-first"
+alias ll="lc -l -h"
+alias la="ll -A"
+
+alias dotfiles='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
+
 ### PLUGIN
 source $HOME/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -61,5 +71,3 @@ if command -v fzf >/dev/null; then
     source $HOME/.zsh/plugin/zsh-fzf/completion.zsh
 fi
 
-### ALIAS
-source $HOME/.aliases

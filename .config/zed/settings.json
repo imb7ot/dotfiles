@@ -8,24 +8,19 @@
 // from the command palette or from `Zed` application menu.
 {
   // General
+  "cli_default_open_behavior": "new_window",
+  "restore_on_startup": "launchpad",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
 
   // Appearance
-  "theme": "Gruvbox Dark",
-  "buffer_font_family": "JetBrains Mono",
-  "buffer_font_size": 13.0,
+  "theme": "Gruvbox Dark Hard",
+  "buffer_font_family": "IBM Plex Mono Var",
+  "buffer_font_size": 14.0,
   "buffer_font_features": {
-    "calt": false,
     "zero": true,
-    "cv01": true,
-    "cv07": true,
-    "cv11": true,
-    "cv12": true,
-    "cv14": true,
-    "cv19": true,
   },
   "ui_font_size": 15.0,
   "cursor_blink": false,
@@ -33,13 +28,25 @@
   // Keymap
   "vim_mode": true,
 
-  // Editor
-  "format_on_save": "off",
-
   // Languages & Tools
   "languages": {
     "Python": {
-      "language_servers": ["ty", "!basedpyright"]
-    }
+      "language_servers": ["ty", "!basedpyright"],
+    },
   },
+
+  // Terminal
+  "terminal": {
+    "font_family": "IBM Plex Mono Var",
+    "font_size": 14.0,
+    "font_features": {
+      "zero": true,
+    },
+  },
+
+  // AI
+  "disable_ai": true,
+
+  // Network
+  "proxy": "http://127.0.0.1:7890",
 }

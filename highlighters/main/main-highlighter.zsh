@@ -354,6 +354,7 @@ _zsh_highlight_highlighter_main_paint()
     'pkexec' '' # doesn't take short options; immune to #121 because it's usually not passed --option flags
     # Not listed: -h, which has two different meanings.
     'sudo' Cgprtu:AEHPSbilns:eKkVv # as of sudo 1.8.21p2
+    'run0' ugD:h # systemd 256.6
     'stdbuf' ioe:
     'eatmydata' ''
     'catchsegv' ''
@@ -1239,9 +1240,14 @@ _zsh_highlight_main_highlighter_check_path()
   fi
   tmp_path=$tmp_path:a
 
+  local candidate_new_tmp_path
   while [[ $tmp_path != / ]]; do
     [[ -n ${(M)ZSH_HIGHLIGHT_DIRS_BLACKLIST:#$tmp_path} ]] && return 1
-    tmp_path=$tmp_path:h
+    candidate_new_tmp_path=${tmp_path:h}
+    if [[ $candidate_new_tmp_path == $tmp_path ]]; then
+      break
+    fi
+    tmp_path=${candidate_new_tmp_path}
   done
 
   if (( in_command_position )); then

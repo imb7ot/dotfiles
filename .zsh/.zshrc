@@ -54,14 +54,13 @@ alias la="ll -A"
 alias dotfiles='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
 
 ### PLUGIN
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 if command -v fzf >/dev/null; then
     FZF_CTRL_T_OPTS=--walker=file,dir
     FZF_ALT_C_OPTS=--walker=dir
     source $HOME/.zsh/plugin/zsh-fzf/key-bindings.zsh
     source $HOME/.zsh/plugin/zsh-fzf/completion.zsh
 fi
+
+source $HOME/.zsh/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $HOME/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

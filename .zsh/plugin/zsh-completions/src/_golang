@@ -30,7 +30,7 @@
 # Description
 # -----------
 #
-#  Completion script for go 1.26.0 (https://go.dev/).
+#  Completion script for go 1.27.0 (https://go.dev/).
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -427,7 +427,6 @@ case $state in
     local -a fix_flags=(
       '-fixtool=[specify fix analyzer]:analyzer:__golang_fix_analyzers'
       '-diff[display diffs instead of rewriting files]'
-      '-fixtool=[select analysis tool]:analyzer:'
       '(- *)-V[print version and exit]'
       '-any[enable any analysis]'
       '-buildtag[enable buildtag analysis]'
@@ -485,6 +484,7 @@ case $state in
           '-all[show all the documentation for the package]' \
           '-c[respect case when matching symbols]' \
           '-cmd[treat a command (package main) like a regular package]' \
+          '-ex[include executable examples]' \
           '-http[serve HTML docs over HTTP]' \
           '-short[one-line representation for each symbol]' \
           '-src[show the full source code for the symbol]' \
@@ -747,7 +747,6 @@ case $state in
             '-test.fuzzminimizetime[time to spend minimizing a value after finding a failing input (default 1m0s)]:t' \
             '-test.fuzztime[time to spend fuzzing; default is to run indefinitely]:t' \
             '-test.fuzzworker[coordinate with the parent process to fuzz random values (for use only by cmd/go)]' \
-            '-test.list[list tests, examples, and benchmarks matching regexp then exit]:regexp' \
             '-test.memprofile[write an allocation profile to file]:file:_files' \
             '-test.memprofilerate[set memory allocation profiling rate (see runtime.MemProfileRate)]:rate' \
             '-test.mutexprofile[write a mutex contention profile to the named file after execution]:string' \
@@ -1011,6 +1010,8 @@ case $state in
                   '-libgcc[compiler support lib for internal linking; use "none" to disable]:lib:(none)' \
                   '-linkmode[set link mode]:mode:(internal external auto)' \
                   '-linkshared[link against installed Go shared libraries]' \
+                  '-macos[mac OS version to write in build info]:version' \
+                  '-macossdk[mac SDK  version to write in build info]:version' \
                   '-memprofile[write memory profile to file]:file' \
                   '-memprofilerate[set runtime.MemProfileRate to rate]:rate' \
                   '-msan[enable MSan interface]' \

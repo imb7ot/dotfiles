@@ -28,7 +28,7 @@
 # Description
 # -----------
 #
-#  Completion script for Node.js v25.8.0 (https://nodejs.org)
+#  Completion script for Node.js v26.11.0 (https://nodejs.org)
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -49,7 +49,7 @@ _node_files() {
     fi
   done
 
-  _files -g "*.(js|mjs|ts|mts)"
+  _files -g "*.(js|mjs|ts|mts|cjs|cts)"
 }
 
 _node_args() {
@@ -70,6 +70,36 @@ _node_scripts() {
 }
 
 _node() {
+  # See https://github.com/nodejs/node/blob/main/doc/api/cli.md
+  # Note some allowed v8 options are listed in 'node --help' but others are not
+  local -a v8_options=(
+    '--max-heap-size=[max size of the heap in Mbytes]:size'
+    '--max-old-space-size=[max size of the old space in Mbytes]:size'
+    '--max-semi-space-size=[max size of a semi-space in Mbytes]:size'
+    '--stack-trace-limit=[number of stack frames to capture]:limit'
+  )
+  if [[ $OSTYPE == linux* ]]; then
+    v8_options+=(
+      '--perf-basic-prof-only-functions[only report function code ranges to perf]'
+      '--perf-basic-prof[enable basic support for perf profiler]'
+      '--perf-prof-unwinding-info[enable unwinding info for perf linux profiler]'
+      '--perf-prof[enable annotate support for perf profiler]'
+    )
+  fi
+
+  local -a inspect_options=()
+  if [[ "$words[2]" == 'inspect' ]]; then
+    inspect_options+=(
+      '*--probe[source location of the probe]:location:_files'
+      '--expr[expression to evaluate of the preceding --probe each time execution reaches it]:expr'
+      '--max-hit[per-probe limit on evaluated hits, when not specified, there is no limit]::num'
+      '--json[output JSON, when not specified, human-readable text]'
+      '--preview[include V8 object previews in JSON output]'
+      '--timeout[global session timeout(default 30000ms)]:msecs'
+      '--port[inspector port for the debuggee(default or 0 use random port)]:port'
+    )
+  fi
+
   local ret=1
 
   _arguments \
@@ -78,6 +108,7 @@ _node() {
     '--abort-on-uncaught-exception[aborting instead of exiting causes a core file to be generated for analysis]' \
     '--allow-addons[allow use of addons when any permissions are set]' \
     '--allow-child-process[allow use of child process when any permissions are set]' \
+    '--allow-ffi[allow use of FFI when any permissions are set]' \
     '--allow-fs-read=[allow permissions to read the filesystem]: :_files' \
     '--allow-fs-write=[allow permissions to write in the filesystem]: :_files' \
     '--allow-inspector[allow use of inspector when any permissions are set]' \
@@ -109,20 +140,26 @@ _node() {
     '*--env-file-if-exists=[set environment variables from supplied file if exists]:envfile:_files' \
     '(- 1 *)'{-e,--eval}'[evaluate script]:inline JavaScript' \
     '--experimental-addon-modules[enable experimental import support for addons]' \
+    '--experimental-bench[enable experimental node:bench module and benchmark runner]' \
     '--experimental-config-file=[set config file from supplied file]:file:_files' \
     '--experimental-default-config-file[set config file from default config file]' \
     '--experimental-eventsource[enable experimental EventSource API]' \
     '--experimental-import-meta-resolve[experimental ES Module import.meta.resolve() support]' \
+    '--experimental-import-text[experimental support for importing source as text with import attributes]' \
     '--experimental-inspector-network-resource[experimental load network resources via the inspector]' \
     '(--loader --experimental-loader)'{--loader,--experimental-loader}'=[Specify the module of a custom ECMAScript Module loader]: :_files' \
     '--experimental-network-inspection[enable experimental network inspection support]' \
+    '--experimental-package-map=[use the specified file for package map resolution]:file:_files' \
     '--experimental-print-required-tla[print pending top-level await]' \
     '--experimental-sea-config=[generate a blob that can be embedded into the single executable application]: :_files' \
-    '--experimental-storage-inspection[experimental storage inspection support]' \
+    '--experimental-storage-inspection[enable experimental storage inspection support]' \
+    '--experimental-stream-iter[enable experimental iterable streams API(node:stream/iter)]' \
     '--experimental-test-coverage[enable code coverage in the test runner]' \
     '--experimental-test-module-mocks[enable module mocking in the test runner]' \
-    '--experimental-transform-types[enable transformation of TypeScript-onlysyntax into JavaScript code]' \
+    '--experimental-test-tag-filter=[run tests matching the given tag filter expression]:tag'\
+    '--experimental-vfs[enable experimental node:vfs module]' \
     '--experimental-vm-modules[experimental ES Module support in vm module]' \
+    '--experimental-web-worker[enable experimental Web Worker API]' \
     '--experimental-worker-inspection[experimental worker inspection support]' \
     '--expose-gc[expose gc extension]' \
     '--force-context-aware[disable loading non-context-aware addons]' \
@@ -155,34 +192,42 @@ _node() {
     '--no-async-context-frame[improve AsyncLocalStorage performance with AsyncContextFrame]' \
     '--no-deprecation[silence deprecation warnings]' \
     '--no-experimental-detect-module[when ambiguous modules fail to evaluate, try again to evaluate them as ES modules]' \
+    '--no-experimental-ffi[disable experimental node:ffi module]' \
     '--no-experimental-global-navigator[expose experimental Navigator API on the global scope]' \
     '--no-experimental-repl-await[disable experimental await keyword support in REPL]' \
+    '--no-experimental-require-module[Legacy alias for --require-module]' \
     '--no-experimental-sqlite[disable experimental node sqlite module]' \
-    '(--no-strip-types --no-experimental-strip-types)'{--no-strip-types,--no-experimental-strip-types}'[disable type-stripping for TypeScript files]' \
-    '--no-experimental-websocket[experimental WebSocket API (currently set)]' \
+    '--no-experimental-websocket[disable experimental WebSocket API]' \
+    '(--webstorage --no-experimental-webstorage)--webstorage[enable experimental Web Storage API]' \
+    '(--webstorage --no-experimental-webstorage)--no-experimental-webstorage[disable experimental Web Storage API]' \
     '--no-extra-info-on-fatal-exception[hide extra information on fatal exception that causes exit]' \
     '--no-force-async-hooks-checks[disable checks for async_hooks]' \
     '--no-global-search-paths[disable global module search paths]' \
-    '(--no-network-family-autoselection --enable-network-family-autoselection)'{--no-network-family-autoselection,--enable-network-family-autoselection}'[disable network address family autodetection algorithm]' \
-    '(--require-module --no-require-module --no-experimental-require-module)'{--no-require-module,--no-experimental-require-module}'[disable support for loading a synchronous ES module graph in require()]' \
+    '(--no-network-family-autoselection --enable-network-family-autoselection)--enable-network-family-autoselection[enable network address family autodetection algorithm]' \
+    '(--no-network-family-autoselection --enable-network-family-autoselection)--no-network-family-autoselection[disable network address family autodetection algorithm]' \
+    '(--require-module --no-require-module)--no-require-module[disable support for loading a synchronous ES module graph in require()]' \
+    '(--experimental-strip-types --no-strip-types)--experimental-strip-types[enable Type-stripping for TypeScript files]' \
+    '(--experimental-strip-types --no-strip-types)--no-strip-types[disable Type-stripping for TypeScript files]' \
     '--no-warnings[silence all process warnings]' \
-    '(--no-webstorage --no-experimental-webstorage)'{--no-webstorage,--no-experimental-webstorage}'[disable Web Storage API]' \
     '--node-memory-debug[run with extra debug checks for memory leaks in Node.js itself]' \
     '--openssl-config=[load OpenSSL configuration from the specified file (overrides OPENSSL_CONF)]:file:_files' \
     '--openssl-legacy-provider[enable OpenSSL 3.0 legacy provider]' \
     '--openssl-shared-config[enable OpenSSL shared configuration]' \
     '--permission[enable the permission system]' \
     '--permission-audit[enable audit only for the permission system]' \
+    '--permission-symlinks[preserve symbolic links when resolving]' \
+    '--permission-symlinks-main[preserve symbolic links when resolving the main module]' \
     '--pending-deprecation[emit pending deprecation warnings]' \
     '--preserve-symlinks[preserve symbolic links when resolving]' \
     '--preserve-symlinks-main[preserve symbolic links when resolving the main module]' \
     '(- 1 *)'{-p,--print}'[evaluate script and print result]:inline JavaScript' \
+    '--process-timeout=[print why the process is still running and exit 124 if it has not exit after given duration]:duration' \
     '--prof[generate V8 profiler output]' \
     '--prof-process[process V8 profiler output generated using --prof]' \
     '--redirect-warnings=[write warnings to file instead of stderr]: :_files' \
     '--report-compact[output compact single-line JSON]' \
-    '--report-exclude-env[exclude environment variables when generating report]' \
     '--report-directory=[custom report path]: :_files -/' \
+    '--report-exclude-env[exclude environment variables when generating report]' \
     '--report-exclude-network[exclude network interface diagnostics(default: false)]' \
     '--report-filename=[custom report file name]: :_files' \
     '--report-on-fatalerror[generate diagnostic report on fatal (internal) errors]' \
@@ -201,6 +246,7 @@ _node() {
     '--test-coverage-exclude=[exclude files from coverage report that match this glob pattern]:pattern' \
     '--test-coverage-functions=[the function coverage minimum threshold]:threshold' \
     '--test-coverage-include=[include files from coverage report that match this glob pattern]:pattern' \
+    '--test-coverage-include-all[include source files that were never loaded in the coverage report]' \
     '--test-coverage-lines=[the line coverage minimum threshold]:threshold' \
     '--test-force-exit[force test runner to exit upon completion]' \
     '--test-global-setup=[specify the path to the global setup file]:file:_files' \
@@ -227,7 +273,7 @@ _node() {
     '--trace-deprecation[show stack traces on deprecations]' \
     '--trace-env[print accesses to the environment variables]' \
     '--trace-env-js-stack[print accesses to the environment variables and the JavaScript stack trace]' \
-    '--trace-env-native-stack[print accesses to the environment variables and the native stack trace ]' \
+    '--trace-env-native-stack[print accesses to the environment variables and the native stack trace]' \
     '--trace-event-categories[comma separated list of trace event categories to record]: :{_values -s , categories node node.async_hooks node.bootstrap node.perf node.perf.usertiming node.perf.timerify node.fs.sync node.vm.script v8}' \
     '--trace-event-file-pattern[Template string specifying the filepath for the trace-events data, it supports ${rotation} and ${pid} log-rotation id. %2$u is the pid.]:template string' \
     '--trace-exit[show stack trace when an environment exits]' \
@@ -252,6 +298,8 @@ _node() {
     "--watch-path=[path to watch]: :_node_files" \
     '--watch-preserve-output[preserve outputs on watch mode restart]' \
     '--zero-fill-buffers[automatically zero-fill all newly allocated Buffer and SlowBuffer instances]' \
+    $v8_options[@] \
+    $inspect_options[@] \
     '(- 1 *)'{-h,--help}'[print node command line options]' \
     '(- 1 *)'{-v,--version}'[print Node.js version]' \
     '*: :_node_args' && ret=0
